@@ -14,6 +14,8 @@ void Result::Initialize()
 	viewportMatrix = MakeViewportMatrix(0, 0, float(kWindowWidth), float(kWindowHeight), 0.0f, 1.0f);
 
 	segment1 = { {-2.0f,-1.0f,0.0f},{3.0f,2.0f,2.0f} };
+
+	aabb = { .min{-0.5f,-0.5f,-0.5f},.max{0.5f,0.5f,0.5f}, };
 }
 
 void Result::Updata()
@@ -23,7 +25,7 @@ void Result::Updata()
 
 void Result::Draw()
 {
-	//DrawAABB();
+	DrawAABB(aabb, worldviewProjectionMatrix, viewportMatrix, WHITE);
 	//線分の描画
 	Vector3 start = Transform(Transform(segment1.origin, worldviewProjectionMatrix), viewportMatrix);
 	Vector3 end = Transform(Transform(Add(segment1.origin, segment1.diff), viewportMatrix), viewportMatrix);

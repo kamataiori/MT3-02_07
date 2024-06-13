@@ -22,6 +22,8 @@ public:
 
 	Segment segment1{};
 
+	AABB aabb{};
+
 
 	void Initialize();
 
