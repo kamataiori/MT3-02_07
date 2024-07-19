@@ -2,6 +2,11 @@
 #include "Vector2.h"
 #include "Vector3.h"
 
+static const int kColumnWidth = 60;
+static const int kColumnHeight = 20;
+const int kWindowWidth = 1280;
+const int kWindowHeight = 720;
+
 typedef struct Matrix2x2
 {
 	float m[2][2];
