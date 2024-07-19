@@ -55,10 +55,10 @@ void Result::Draw()
 	DrawAABB(aabb1, viewMatrixProjectionMatrix, viewportMatrix, color);
 
 	ImGui::Begin("Window");
-	ImGui::DragFloat3("CameraTranslate", &cameraTranslate.x, 0.01f);
+	/*ImGui::DragFloat3("CameraTranslate", &cameraTranslate.x, 0.01f);
 	ImGui::DragFloat3("CameraRotate", &cameraRotate.x, 0.01f);
 	ImGui::DragFloat3("Line origin", &segment.origin.x, 0.01f);
-	ImGui::DragFloat3("Line difference", &segment.diff.x, 0.01f);
+	ImGui::DragFloat3("Line difference", &segment.diff.x, 0.01f);*/
 	ImGui::DragFloat3("aabb1 min", &aabb1.min.x, 0.01f);
 	ImGui::DragFloat3("aabb1 max", &aabb1.max.x, 0.01f);
 	//ImGui::DragFloat3("aabb2 min", &aabb2.min.x, 0.01f);
