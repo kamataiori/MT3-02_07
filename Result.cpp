@@ -35,24 +35,14 @@ void Result::Updata()
 
 void Result::Draw()
 {
-	//DrawGrid(viewMatrixProjectionMatrix, viewportMatrix);
+	DrawGrid(viewMatrixProjectionMatrix, viewportMatrix);
 
 		//DrawSphere(sphere, viewMatrixProjectionMatrix, viewportMatrix, sphere.color);
 		//DrawSphere(closestPointSphere, viewMatrixProjectionMatrix, viewportMatrix, WHITE);
 		//DrawSphere(sphere, viewMatrixProjectionMatrix, viewportMatrix, sphere.color);
-		//DrawSphere(sphere2, viewMatrixProjectionMatrix, viewportMatrix, sphere2.color);
-		/*if(IsCollision(sphere, plane))
-		{
-			sphere.color = RED;
-		}
-		else {
-			sphere.color = WHITE;
+	
 
-		}*/
-		//DrawTriangle(triangle, viewMatrixProjectionMatrix, viewportMatrix, triangle.color);
-	Novice::DrawLine((int)start.x, (int)start.y, (int)end.x, (int)end.y, color);
 
-	DrawAABB(aabb1, viewMatrixProjectionMatrix, viewportMatrix, color);
 
 	ImGui::Begin("Window");
 	/*ImGui::DragFloat3("CameraTranslate", &cameraTranslate.x, 0.01f);
@@ -67,4 +57,18 @@ void Result::Draw()
 	//ImGui::DragFloat3("Line", &segment.origin.x, 0.01f);
 	//ImGui::DragFloat3("Line diff", &segment.diff.x, 0.01f);
 	ImGui::End();
+
+	//DrawSphere(sphere2, viewMatrixProjectionMatrix, viewportMatrix, sphere2.color);
+	/*if (IsCollision(aabb1, segment))
+	{
+		color = RED;
+	}
+	else {
+		color = WHITE;
+
+	}*/
+	//DrawTriangle(triangle, viewMatrixProjectionMatrix, viewportMatrix, triangle.color);
+	Novice::DrawLine((int)start.x, (int)start.y, (int)end.x, (int)end.y, color);
+
+	DrawAABB(aabb1, viewMatrixProjectionMatrix, viewportMatrix, color);
 }

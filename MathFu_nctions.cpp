@@ -582,10 +582,19 @@ bool IsCollision(const AABB& aabb, const Segment& segment)
 	float tyMin, tyMax;
 	float tzMin, tzMax;
 
+
+	txMin = (aabb.min.x - segment.origin.x) / segment.diff.x;
+	txMax = (aabb.max.x - segment.origin.x) / segment.diff.x;
+
+	tyMin = (aabb.min.y - segment.origin.y) / segment.diff.y;
+	tyMax = (aabb.max.y - segment.origin.y) / segment.diff.y;
+
+	tzMin = (aabb.min.z - segment.origin.z) / segment.diff.z;
+	tzMax = (aabb.max.z - segment.origin.z) / segment.diff.z;
+
 	if (segment.diff.x != 0.0f)
 	{
-		txMin = (aabb.min.x - segment.origin.x) / segment.diff.x;
-		txMax = (aabb.max.x - segment.origin.x) / segment.diff.x;
+		
 	}
 	else
 	{
@@ -595,24 +604,12 @@ bool IsCollision(const AABB& aabb, const Segment& segment)
 
 	if (segment.diff.y != 0.0f)
 	{
-		tyMin = (aabb.min.y - segment.origin.y) / segment.diff.y;
-		tyMax = (aabb.max.y - segment.origin.y) / segment.diff.y;
+		
 	}
 	else
 	{
 		tyMin = -INFINITY;
 		tyMax = INFINITY;
-	}
-
-	if (segment.diff.z != 0.0f)
-	{
-		tzMin = (aabb.min.z - segment.origin.z) / segment.diff.z;
-		tzMax = (aabb.max.z - segment.origin.z) / segment.diff.z;
-	}
-	else
-	{
-		tzMin = -INFINITY;
-		tzMax = INFINITY;
 	}
 
 	float tNearX = min(txMin, txMax);
@@ -623,12 +620,20 @@ bool IsCollision(const AABB& aabb, const Segment& segment)
 	float tFarY = max(tyMin, tyMax);
 	float tFarZ = max(tzMin, tzMax);
 
-	float tmin = max(max(tNearX, tNearY), tNearZ);
-	float tmax = min(min(tFarX, tFarY), tFarZ);
+	float tmin = max(tNearX,max(tNearY, tNearZ));
+	float tmax = min(tFarX, min(tFarY, tFarZ));
 
-	if (tmin <= tmax && tmax >= 0 && tmin <= 1)
+	if (tmin <= tmax)
 	{
-		return true;
+		if (tmin * tmax < 0)
+		{
+			return true;
+		}
+		if (tmin >= 0 && tmin <= 1 || tmax >= 0 && tmax <= 1)
+		{
+			return true;
+		}
+		
 	}
 
 	return false;
